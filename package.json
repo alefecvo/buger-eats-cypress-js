@@ -1,0 +1,15 @@
+{
+  "name": "buger-eats-cypress",
+  "version": "1.0.0",
+  "description": "project to acceptance tests automation of site BugerEats",
+  "main": "index.js",
+  "scripts": {
+    "test": "npx cypress open"
+  },
+  "author": "Álefe Cardozo Silva",
+  "license": "MIT",
+  "devDependencies": {
+    "cypress": "^9.0.0"
+  },
+  "dependencies": {}
+}
