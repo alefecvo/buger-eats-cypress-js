@@ -8,7 +8,7 @@ describe('Cadastro', () => {
     });
 
     //Test
-    it('TEST 1 - Usuário deve se tornar um entregador', ()=>{
+    it('TEST 1 - FLUXO PRINCIPAL - Cadastrar novo entregador', ()=>{
         //Acessando cadastro de entregador
         cy.get('#page-deliver form h1').should('have.text','Cadastre-se para  fazer entregas')
     
@@ -25,7 +25,10 @@ describe('Cadastro', () => {
                 complemento: 'casa',
                 bairro: 'Jardim Paraíso',
                 cidade_uf: 'Curvelo/MG'
-            }
+            },
+            metodo_entrega: 'Moto',
+            cnh: 'cnh-digital.jpg'
+            
     }
         //Preenchimento dados do entregador
         cy.get('#page-deliver input[name=name]').type(dadosEntregador.nome);
@@ -44,5 +47,18 @@ describe('Cadastro', () => {
         cy.get('input[name="district"]').should('have.value',dadosEntregador.endereco.bairro);
         cy.get('input[name="city-uf"]').should('have.value',dadosEntregador.endereco.cidade_uf);
 
+        //Preenchendo dados de método de entrega por Moto
+        cy.contains('.delivery-method li', dadosEntregador.metodo_entrega).click();
+        
+        //Fazendo upload da CNH
+        cy.get('input[accept^="image"]').attachFile('/images/' + dadosEntregador.cnh);
+
+        //Submetendo dados do cadastro
+        cy.get('button[type="submit"]').click();
+
+        //Validando cadastro do entregador
+        const expectedMessage = 'Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.'
+        
+        cy.get('.swal2-container .swal2-html-container').should('have.text',expectedMessage);
     })
 });
