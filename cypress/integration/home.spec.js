@@ -1,4 +1,4 @@
-import SignupPage from '../pages/SignupPage'
+import signup from '../pages/SignupPage'
 
 describe('', ()=>{
 

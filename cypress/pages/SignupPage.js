@@ -11,7 +11,7 @@ class signupPage {
 
     fillForm(delivery) {
         //Preenchimento dados do entregador
-        cy.get('#page-deliver input[name=name]').type(delivery.name);
+        cy.get('#page-deliver input[name=fullName]').type(delivery.name);
         cy.get('#page-deliver input[name=cpf]').type(delivery.cpf);
         cy.get('#page-deliver input[name=email]').type(delivery.email);
         cy.get('#page-deliver input[name=whatsapp]').type(delivery.whatsapp);

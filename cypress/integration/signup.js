@@ -11,26 +11,20 @@ describe('Cadastro', () => {
     });
 
     //Test
-    it('TEST 1 - FLUXO PRINCIPAL - Cadastrar novo entregador com cpf correto', function () {
-
+    it('TEST 1 - User should be deliver - cpf correct', function () {
         signup.goSite()
         signup.fillForm(this.delivery.cpf_valido)
         signup.validateForm(this.delivery.cpf_valido)
         signup.submit()
         signup.modalContentShouldBe('Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.')
-
     })
 
     //Test
-    it('TEST 2 - FLUXO ALTERNATIVO - Cadastrar novo entregador com cpf incorreto', function () {
-
-
-
+    it('TEST 2 - User should be deliver - cpf incorrect', function () {
         signup.goSite()
         signup.fillForm(this.delivery.cpf_invalido)
         signup.validateForm(this.delivery.cpf_invalido)
         signup.submit()
         signup.alertMessageShouldBe('Oops! CPF inválido')
-
     })
 });
