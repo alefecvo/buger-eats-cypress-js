@@ -1,11 +1,11 @@
+import SignupPage from '../pages/SignupPage'
 
 describe('', ()=>{
 
     //Execução feita antes de cada teste
     beforeEach(() => {
         //Acessando página e definindo resolução navegador
-        cy.viewport(1440,900)
-        cy.visit('https://buger-eats.vercel.app/');
+        signup.goSite()
     });
 
     //Test
