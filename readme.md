@@ -9,6 +9,7 @@ Install the items bellow:
 1. NodeJS (14.18.1) - [node](https://nodejs.org/download/release/v14.18.1/)
 2. Visual Code (last version) - [vs code](https://www.code.visualstudio.com) + plugin "Material Icon"
 3. Cypress (version 9.0.0) - [cypress](https://libraries.io/npm/cypress)
+4. Library Faker Data (run command - ```bash npm install faker@5.5.3 --save-dev' ```)
 
 Get clone this project to your computer and execute the commands bellow:
 
