@@ -1,68 +1,36 @@
-import SignupPage from '../pages/SignupPage'
+import signup from '../pages/SignupPage'
 
 describe('Cadastro', () => {
 
-    var signup = new SignupPage()   
-
     //Execução feita antes de cada teste
-    beforeEach(() => {
+    beforeEach(function () {
         signup.goSite()
+        cy.fixture('delivery').then((item) => {
+            this.delivery = item
+        })
     });
 
     //Test
-    it('TEST 1 - FLUXO PRINCIPAL - Cadastrar novo entregador com cpf correto', ()=>{
-   
-        var delivery ={
-            name: 'Júlia Marrone',
-            cpf: '12345678910',
-            email: 'juliamarrone@bol.com',
-            whatsapp: '11912121212',
-            address:{
-                postalcode: '35794106',
-                street: 'Rua Joinvile',
-                number: '130',
-                details: 'casa',
-                district: 'Jardim Paraíso',
-                city_state: 'Curvelo/MG'
-            },
-            delivery_method: 'Moto',
-            cnh: 'cnh-digital.jpg'    
-        }
+    it('TEST 1 - FLUXO PRINCIPAL - Cadastrar novo entregador com cpf correto', function () {
 
         signup.goSite()
-        signup.fillForm(delivery)
-        signup.validateForm(delivery)
+        signup.fillForm(this.delivery.cpf_valido)
+        signup.validateForm(this.delivery.cpf_valido)
         signup.submit()
         signup.modalContentShouldBe('Recebemos os seus dados. Fique de olho na sua caixa de email, pois e em breve retornamos o contato.')
-       
+
     })
 
     //Test
-    it.only('TEST 2 - FLUXO ALTERNATIVO - Cadastrar novo entregador com cpf incorreto', ()=>{
-      
-        var delivery ={
-            name: 'Júlia Marrone',
-            cpf: '123456789',
-            email: 'juliamarrone@bol.com',
-            whatsapp: '11912121212',
-            address:{
-                postalcode: '35794106',
-                street: 'Rua Joinvile',
-                number: '130',
-                details: 'casa',
-                district: 'Jardim Paraíso',
-                city_state: 'Curvelo/MG'
-            },
-            delivery_method: 'Moto',
-            cnh: 'cnh-digital.jpg'
-            
-        }
-     
+    it('TEST 2 - FLUXO ALTERNATIVO - Cadastrar novo entregador com cpf incorreto', function () {
+
+
+
         signup.goSite()
-        signup.fillForm(delivery)
-        signup.validateForm(delivery)
+        signup.fillForm(this.delivery.cpf_invalido)
+        signup.validateForm(this.delivery.cpf_invalido)
         signup.submit()
         signup.alertMessageShouldBe('Oops! CPF inválido')
-       
+
     })
 });
